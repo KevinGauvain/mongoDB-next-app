@@ -1,22 +1,26 @@
 import Head from "next/head";
-// import Link from "next/link";
+import Link from "next/link";
 import styles from "../styles/Home.module.css";
-import { GetServerSideProps } from "next";
-import "dotenv/config";
+// import "dotenv/config";  !!!!!!!!!!!!!!!!!!!!!!! NE PAS METTRE INUTILE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-import { getDatabase } from "../src/database";
+// --------------Test dans index puis après avec une page----------------------------------
+// -
+// import { getDatabase } from "../src/database";
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const mongodb = await getDatabase();
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   const mongodb = await getDatabase();
 
-  const actors = await mongodb.db().collection("actors").find().toArray();
-
-  return {
-    props: {
-      actors: actors,
-    },
-  };
-};
+//   const actors = await mongodb.db().collection("actor").find().toArray();
+//   console.log(process.env.MONGODB_URI);
+//   const actorsStringify = JSON.stringify(actors);
+//   const actorsParse = JSON.parse(actorsStringify);
+//   return {
+//     props: {
+//       actors: actorsParse,
+//     },
+//   };
+// };
+// ----------------------------------------------------------------------------------------
 
 export default function Home({ actors }) {
   return (
@@ -36,8 +40,10 @@ export default function Home({ actors }) {
           <code className={styles.code}></code>
         </p>
         <div>
-          <p>Element qui s'affiche provenant de la DB :</p>
-          <p>{actors}</p>
+          <button>
+            <Link href="/actorsList">ActorsList</Link>
+          </button>
+          {/* <p>{actorsList}</p> */}
         </div>
       </main>
       <footer className={styles.footer}>

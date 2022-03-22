@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
-const MONGODB_URI = process.env.MONGODB_URI;
-
+const MONGODB_URI = process.env.MONGODB_URI || "";
+console.log(process.env.MONGODB_URI);
 let cachedDb: MongoClient = null;
 
 export function getDatabase(): Promise<MongoClient> {
